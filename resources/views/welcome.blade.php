@@ -11,7 +11,6 @@
         <label for="url">Enter URL:</label>
         <input type="url" name="url" id="url" required>
         <button type="submit">Shorten URL</button>
-        
     </form>
 </body>
 </html>
