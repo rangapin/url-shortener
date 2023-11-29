@@ -14,7 +14,8 @@ use App\Http\Controllers\UrlController;
 |
 */
 
-Route::get('/shorten', [UrlController::class, 'shortenUrl']);
+Route::view('/welcome', 'welcome');
+
+Route::post('/shorten', [UrlController::class, 'shortenUrl']);
 
 Route::get('/{shortenedUrl}', [UrlController::class, 'redirectToUrl']);
-

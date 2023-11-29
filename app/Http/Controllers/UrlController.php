@@ -17,23 +17,29 @@ class UrlController extends Controller
         ]);
 
         $url = $request->input('url');
-        $shortenedUrl = Str::random(6); 
+        $shortenedUrl = Str::random(6);
+
+        // Generate the complete URL using the url() helper function
+        $completeUrl = url($shortenedUrl);
 
         Url::create([
             'url' => $url,
-            'shortened_url' => $shortenedUrl,
+            'shortened_url' => $completeUrl,
         ]);
 
-        return view('shortened', ['shortenedUrl' => $shortenedUrl]);
+        return view('shortened', ['shortenedUrl' => $completeUrl]);
     }
+
 
     public function redirectToUrl($shortenedUrl)
     {
-        $url = Url::where('shortened_url', $shortenedUrl)->first();
+        $url = Url::where('shortened_url', url($shortenedUrl))->first();
 
         if ($url) {
             return redirect($url->url);
         }
 
         abort(404);
-    }}
+    }
+}
+
